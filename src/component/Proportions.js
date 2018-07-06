@@ -1,8 +1,6 @@
 import React, {Component} from 'react';
 
-export default class Proportions extends Component {
-  
-  
+export default class Proportions extends Component { 
   render() {
     return (
       this.props ? 
