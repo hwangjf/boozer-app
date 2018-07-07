@@ -7,7 +7,7 @@ export default class Proportions extends Component {
         <div>
           {this.props.proportions.map(p => {
             return (
-              <ul>
+              <ul key={p.id} >
                 <li>
                 <strong>ingredient name:</strong> {p.ingredient_name}, <strong>amount:</strong> {p.amount}
                 </li>
