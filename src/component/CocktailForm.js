@@ -97,7 +97,7 @@ export default class CocktailForm extends Component {
     return (
       <form onSubmit={this.handleSubmit} >
       <h3>Create Cocktail</h3>
-        <label>Name:</label>
+        <label>Name: </label>
         <input 
           type="text" 
           name="name" 
@@ -105,7 +105,7 @@ export default class CocktailForm extends Component {
           value={this.state.name}
         />
         
-        <label>Description:</label>
+        <label>Description: </label>
         <input 
           type="text-field" 
           name="description" 
@@ -113,7 +113,7 @@ export default class CocktailForm extends Component {
           value={this.state.description} 
         />
         
-        <label>Instructions:</label>
+        <label>Instructions: </label>
         <input 
           type="text-field" 
           name="instructions" 

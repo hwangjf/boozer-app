@@ -10,13 +10,14 @@ export default class CocktailsContainer extends React.Component {
     selectedCocktail: null,
     displayDetails: false,
     proportions: [],
-    term: ''
+    term: '',
+    filteredCocktails: []
   }
 
   componentDidMount() {
     fetch('http://localhost:3000/api/v1/cocktails')
       .then(r => r.json())
-      .then(d => this.setState({ cocktails: d }))
+      .then(d => this.setState({ cocktails: d ,filteredCocktails: d}))
   }
 
   handleClick = (event) => {
@@ -30,23 +31,18 @@ export default class CocktailsContainer extends React.Component {
   }
 
   handleSearch = (event) => {
-    this.setState({ term: event.target.value })
-    this.filterCocktail()
+    this.setState({ term: event.target.value },this.filterCocktail)
   }
 
   filterCocktail = () => {
-    if (!!this.state.cocktails) {
-      let filteredCocktails = this.state.cocktails.filter(cocktail=>{
-        console.log(this.state.term.toLowerCase())
-        return (
-          cocktail.name
-          // cocktail.name.toLowerCase().includes(this.state.term.toLowerCase())
-        )
-      })
-      this.setState({cocktails:filteredCocktails})
-    }
+    let filteredCocktails = this.state.cocktails.filter(cocktail=>{
+      return (
+        cocktail.name.toLowerCase().includes(this.state.term.toLowerCase())
+      )
+    })
+    this.setState({filteredCocktails:filteredCocktails})
   }
-
+ 
   render() {
     return (
       <div>
@@ -55,7 +51,7 @@ export default class CocktailsContainer extends React.Component {
         {this.state.selectedCocktail ? <CocktailDetails style={{ float: "right" }} proportions={this.state.proportions} selectedCocktail={this.state.selectedCocktail} /> : null }
         <div style={{float:"left"}}>
           <ol>
-            {this.state.cocktails.map(c => {
+            {this.state.filteredCocktails.map(c => {
               return (
                 <CocktailList
                   key={c.name}
@@ -63,7 +59,8 @@ export default class CocktailsContainer extends React.Component {
                   cocktail={c}
                 />
               )
-            })}
+            })
+            }
           </ol>
         </div>
       </div>
