@@ -123,7 +123,7 @@ export default class CocktailForm extends Component {
         
         <h4>Proportions:</h4>
         {this.renderProportionsForm()}
-        <button type='submit' >Create Cocktail</button>
+        <button type='submit' className="btn btn-primary btn-lg">Create Cocktail</button>
       </form>
     )
   }
