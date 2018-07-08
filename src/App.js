@@ -5,7 +5,6 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Button bsStyle="primary" >bootstrap</Button>
         <CocktailsContainer />
       </div>
     );
