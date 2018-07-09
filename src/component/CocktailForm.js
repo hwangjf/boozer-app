@@ -67,6 +67,7 @@ export default class CocktailForm extends Component {
       return proportion.id === parseInt(event.target.id)
     })
     let newArray = this.state.proportions.filter(proportion=>{
+      console.log(proportion.id, deleteProportion.id)
       if (proportion.id !== deleteProportion.id) {
         return proportion
       }
