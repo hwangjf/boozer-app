@@ -13,9 +13,9 @@ export default class CocktailDetails extends Component {
     return state = {cocktail: prevProps.selectedCocktail}
   }
 
-  componentDidUpdate() {
-    window.scrollTo(0,0)
-  }
+  // componentDidUpdate() {
+  //   window.scrollTo(0,0)
+  // }
 
   handleClick = (event) => {
     this.state.showEdit ? this.setState({ showEdit: false }) : this.setState({ showEdit: true })

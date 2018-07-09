@@ -34,14 +34,18 @@ export default class CocktailForm extends Component {
     this.setState({[event.target.name]: event.target.value})
   }
   
-  handleProportions = (event) => {
-    let array = Array.from(this.state.proportions).map(proportion=>{
-      if (proportion.id === parseInt(event.target.id)) {
-        if (event.target.name === "ingredientName") {
-          proportion.ingredientName = event.target.value
-        } else if (event.target.name === "quantity") {
-          proportion.quantity = event.target.value
+  handleProportions = (event, id) => {
+    let array = Array.from(this.state.proportions).map(proportion => {
+      if (proportion.id === id) {
+        return {
+          ...proportion,
+          [event.target.name]: event.target.value,
         }
+        // if (event.target.name === "ingredientName") {
+        //   proportion.ingredientName = event.target.value
+        // } else if (event.target.name === "quantity") {
+        //   proportion.quantity = event.target.value
+        // }
       } 
       return proportion
     })
@@ -54,7 +58,7 @@ export default class CocktailForm extends Component {
       proportions:[
         ...this.state.proportions,
         {
-          id: this.state.proportions.length+1,
+          id: UUID(), // this.state.proportions.length+1,
           ingredientName: '',
           quantity: ''
         }
@@ -81,8 +85,8 @@ export default class CocktailForm extends Component {
         this.state.proportions.map((p,i)=>{
           return (
             <ProportionsForm
-            key={i+"-propsForm"}
-            id={this.state.proportions.length}
+            key={p.id} //i+"-propsForm"}
+            id={p.id} //this.state.proportions.length}
             deleteProportions={this.deleteProportions}
             handleClick={this.handleClick}
             handleProportions={this.handleProportions}

@@ -9,7 +9,7 @@ export default class ProportionsForm extends Component {
         <input
           type="text"
           name="ingredientName"
-          id={this.props.id + "-ingredientName"}
+          id={this.props.id}
           onChange={this.props.handleProportions}
           value={this.props.ingredientName ? this.props.ingredientName : this.props.ingredient_name}
         />
@@ -18,7 +18,7 @@ export default class ProportionsForm extends Component {
         <input
           type="text"
           name="quantity"
-          id={this.props.id + "-quantity"}
+          id={this.props.id}
           onChange={this.props.handleProportions}
           value={this.props.quantity ? this.props.quantity :this.props.amount}
         />
