@@ -4,6 +4,7 @@ import CocktailDetails from '../component/CocktailDetails'
 import CocktailForm from '../component/CocktailForm'
 import SearchCocktails from '../component/SearchCocktails'
 
+
 export default class CocktailsContainer extends React.Component {
   state = {
     cocktails: [],
@@ -16,8 +17,8 @@ export default class CocktailsContainer extends React.Component {
 
   componentDidMount() {
     fetch('http://localhost:3000/api/v1/cocktails')
-      .then(r => r.json())
-      .then(d => this.setState({ cocktails: d ,filteredCocktails: d}))
+      .then(result => result.json())
+      .then(data => this.setState({ cocktails: data ,filteredCocktails: data}))
   }
 
   handleClick = (event) => {
@@ -25,8 +26,8 @@ export default class CocktailsContainer extends React.Component {
       return c.id === parseInt(event.target.id)
     })
     fetch(`http://localhost:3000/api/v1/cocktails/${parseInt(event.target.id)}`)
-      .then(r => r.json())
-      .then(d => this.setState({ proportions: d.proportions }))
+      .then(result => result.json())
+      .then(data => this.setState({ proportions: data.proportions }))
     this.state.selectedCocktail ? this.setState({ selectedCocktail: selected, displayDetails: true }) : this.setState({ selectedCocktail: selected, displayDetails: false }) 
   }
 
@@ -35,20 +36,20 @@ export default class CocktailsContainer extends React.Component {
   }
 
   filterCocktail = () => {
-    let filteredCocktails = this.state.cocktails.filter(cocktail=>{
+    const filteredCocktails = this.state.cocktails.filter(cocktail=>{
       return (
         cocktail.name.toLowerCase().includes(this.state.term.toLowerCase())
       )
     })
-    this.setState({filteredCocktails:filteredCocktails})
+    this.setState({filteredCocktails})
   }
- 
+
   render() {
     return (
       <div>
         <SearchCocktails handleSearch={this.handleSearch} term={this.state.term}/>
-        <CocktailForm style={{ float: "right" }}/>
-        {this.state.selectedCocktail ? <CocktailDetails style={{ float: "right" }} proportions={this.state.proportions} selectedCocktail={this.state.selectedCocktail} /> : null }
+        <CocktailForm />
+        {this.state.selectedCocktail ? <CocktailDetails proportions={this.state.proportions} handleEdit={this.handleEdit} selectedCocktail={this.state.selectedCocktail} /> : null }
         <div style={{float:"left"}}>
           <ol>
             {this.state.filteredCocktails.map(c => {

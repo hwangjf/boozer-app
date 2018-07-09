@@ -67,7 +67,6 @@ export default class CocktailForm extends Component {
       return proportion.id === parseInt(event.target.id)
     })
     let newArray = this.state.proportions.filter(proportion=>{
-      console.log(proportion.id, deleteProportion.id)
       if (proportion.id !== deleteProportion.id) {
         return proportion
       }
@@ -82,17 +81,18 @@ export default class CocktailForm extends Component {
         this.state.proportions.map((p,i)=>{
           return (
             <ProportionsForm
-              key={i+"-propsForm"}
-              id={i+1}
-              deleteProportions={this.deleteProportions}
-              handleClick={this.handleClick}
-              handleProportions={this.handleProportions}
+            key={i+"-propsForm"}
+            id={this.state.proportions.length}
+            deleteProportions={this.deleteProportions}
+            handleClick={this.handleClick}
+            handleProportions={this.handleProportions}
             />
           )
         })
       )
     }
   }
+  
 
   render() {
     return (
