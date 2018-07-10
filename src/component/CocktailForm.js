@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import ProportionsForm from './ProportionsForm'
+import { UUID } from "uuid";
 
 export default class CocktailForm extends Component {
   state = {

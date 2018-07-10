@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ProportionsForm from '../component/ProportionsForm';
+import { UUID } from "uuid";
 
 export default class EditForm extends Component {
   state = {
@@ -91,7 +92,7 @@ export default class EditForm extends Component {
         
         <h4>Proportions:</h4>
         {this.state.proportions.map(proportion=>{
-          return <ProportionsForm {...proportion} deleteProportions={this.deleteProportions} handleClick={this.handleClick} handleProportions={this.handleProportions} />
+          return <ProportionsForm id={UUID()} {...proportion} deleteProportions={this.deleteProportions} handleClick={this.handleClick} handleProportions={this.handleProportions} />
         })
         }
         <button type='submit' className="btn btn-primary btn-lg">Edit Cocktail</button>
