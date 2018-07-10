@@ -20,7 +20,7 @@ export default class EditForm extends Component {
 
   handleProportions = (event) => {
     const proportions = [...this.state.proportions].map(proportion => {
-      if (proportion.id === parseInt(event.target.id)) {
+      if (proportion.id === parseInt(event.target.id,10)) {
         if (event.target.name === "ingredientName") {
           proportion.ingredient_name = event.target.value
         } else if (event.target.name === "quantity") {
@@ -50,7 +50,7 @@ export default class EditForm extends Component {
   deleteProportions = (event) => {
     console.log(event.target)
     let deleteProportion = this.state.proportions.find(proportion => {
-      return proportion.id === parseInt(event.target.id)
+      return proportion.id === parseInt(event.target.id,10)
     })
     let newArray = this.state.proportions.filter(proportion => {
       if (proportion.id !== deleteProportion.id) {

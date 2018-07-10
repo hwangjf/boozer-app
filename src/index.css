@@ -3,3 +3,19 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+
+h3 {
+  color: darkblue;
+  text-align: center
+}
+
+div.cocktail-list {
+  text-align: left;
+  -webkit-column-count: 1;
+  display: flex;
+}
+
+div.cocktail-form {
+  display: flex;
+  -webkit-column-count: 1;
+}

@@ -36,7 +36,7 @@ export default class CocktailForm extends Component {
   
   handleProportions = (event) => {
     let array = Array.from(this.state.proportions).map(proportion=>{
-      if (proportion.id === parseInt(event.target.id)) {
+      if (proportion.id === parseInt(event.target.id,10)) {
         if (event.target.name === "ingredientName") {
           proportion.ingredientName = event.target.value
         } else if (event.target.name === "quantity") {
@@ -64,7 +64,7 @@ export default class CocktailForm extends Component {
 
   deleteProportions = (event) => {
     let deleteProportion = this.state.proportions.find(proportion=>{
-      return proportion.id === parseInt(event.target.id)
+      return proportion.id === parseInt(event.target.id,10)
     })
     let newArray = this.state.proportions.filter(proportion=>{
       if (proportion.id !== deleteProportion.id) {
@@ -96,36 +96,38 @@ export default class CocktailForm extends Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit} >
-      <h3>Create Cocktail</h3>
-        <label>Name: </label>
-        <input 
-          type="text" 
-          name="name" 
-          onChange={this.handleChange} 
-          value={this.state.name}
-        />
-        
-        <label>Description: </label>
-        <input 
-          type="text-field" 
-          name="description" 
-          onChange={this.handleChange} 
-          value={this.state.description} 
-        />
-        
-        <label>Instructions: </label>
-        <input 
-          type="text-field" 
-          name="instructions" 
-          onChange={this.handleChange} 
-          value={this.state.instructions} 
-        />
-        
-        <h4>Proportions:</h4>
-        {this.renderProportionsForm()}
-        <button type='submit' className="btn btn-primary btn-lg">Create Cocktail</button>
-      </form>
+      <div className="cocktail-form">
+        <form onSubmit={this.handleSubmit} >
+        <h3>Create Cocktail</h3>
+          <label>Name: </label>
+          <input 
+            type="text" 
+            name="name" 
+            onChange={this.handleChange} 
+            value={this.state.name}
+          />
+          
+          <label>Description: </label>
+          <input 
+            type="text-field" 
+            name="description" 
+            onChange={this.handleChange} 
+            value={this.state.description} 
+          />
+          
+          <label>Instructions: </label>
+          <input 
+            type="text-field" 
+            name="instructions" 
+            onChange={this.handleChange} 
+            value={this.state.instructions} 
+          />
+          
+          <h4>Proportions:</h4>
+          {this.renderProportionsForm()}
+          <button type='submit' className="btn btn-primary btn-lg">Create Cocktail</button>
+        </form>
+      </div>
     )
   }
 }

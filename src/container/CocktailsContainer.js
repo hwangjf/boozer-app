@@ -3,7 +3,7 @@ import CocktailList from '../component/CocktailList'
 import CocktailDetails from '../component/CocktailDetails'
 import CocktailForm from '../component/CocktailForm'
 import SearchCocktails from '../component/SearchCocktails'
-
+import {Jumbotron} from 'react-bootstrap'
 
 export default class CocktailsContainer extends React.Component {
   state = {
@@ -23,9 +23,9 @@ export default class CocktailsContainer extends React.Component {
 
   handleClick = (event) => {
     let selected = this.state.cocktails.find(c => {
-      return c.id === parseInt(event.target.id)
+      return c.id === parseInt(event.target.id,10)
     })
-    fetch(`http://localhost:3000/api/v1/cocktails/${parseInt(event.target.id)}`)
+    fetch(`http://localhost:3000/api/v1/cocktails/${parseInt(event.target.id,10)}`)
       .then(result => result.json())
       .then(data => this.setState({ proportions: data.proportions }))
     this.state.selectedCocktail ? this.setState({ selectedCocktail: selected, displayDetails: true }) : this.setState({ selectedCocktail: selected, displayDetails: false }) 
@@ -47,10 +47,13 @@ export default class CocktailsContainer extends React.Component {
   render() {
     return (
       <div>
+        <Jumbotron>
+          <h3>Boozer App</h3>
+        </Jumbotron>
         <SearchCocktails handleSearch={this.handleSearch} term={this.state.term}/>
         <CocktailForm />
         {this.state.selectedCocktail ? <CocktailDetails proportions={this.state.proportions} handleEdit={this.handleEdit} selectedCocktail={this.state.selectedCocktail} /> : null }
-        <div style={{float:"left"}}>
+        <div className="cocktail-list">
           <ol>
             {this.state.filteredCocktails.map(c => {
               return (
